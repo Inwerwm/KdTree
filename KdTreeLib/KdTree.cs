@@ -12,7 +12,8 @@ namespace KdTree
 	{
 		Skip,
 		Error,
-		Update
+		Update,
+		List
 	}
 
 	public class DuplicateNodeError : Exception
@@ -78,6 +79,10 @@ namespace KdTree
 
 							case AddDuplicateBehavior.Update:
 								parent.Value = value;
+								return true;
+
+							case AddDuplicateBehavior.List:
+								parent.Duplicate.Add(value);
 								return true;
 
 							default:

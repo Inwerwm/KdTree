@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace KdTree
@@ -14,10 +15,12 @@ namespace KdTree
 		{
 			Point = point;
 			Value = value;
+			Duplicate.Add(value);
 		}
 
 		public TKey[] Point;
 		public TValue Value = default(TValue);
+		public List<TValue> Duplicate = new List<TValue>();
 
 		internal KdTreeNode<TKey, TValue> LeftChild = null;
 		internal KdTreeNode<TKey, TValue> RightChild = null;
