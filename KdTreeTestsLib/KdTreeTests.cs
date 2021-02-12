@@ -431,5 +431,15 @@ namespace KdTree.Tests
 
 			Assert.AreEqual(0, testNodes.Count);
 		}
+
+		[TestMethod]
+		[TestCategory("KdTree")]
+		public void TestClear()
+        {
+			AddTestNodes();
+			tree.Clear();
+
+			Assert.AreEqual(0, tree.Count);
+		}
 	}
 }
