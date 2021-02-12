@@ -574,7 +574,7 @@ namespace KdTree
 			var nodeList = new List<KdTreeNode<TKey, TValue>>();
 			AddNodesToList(root, nodeList);
 
-			Clear();
+			RemoveChildren();
 
 			AddNodesBalanced(nodeList.ToArray(), 0, 0, nodeList.Count - 1);
 		}
@@ -591,17 +591,25 @@ namespace KdTree
 			}
 		}
 
-		public void Clear()
+		public void RemoveChildren()
         {
             if (root == null)
                 return;
             
 			RemoveChildNodes(root);
-			root = null;
-			Count = 0;
         }
 
-        public void SaveToFile(string filename)
+		public void Clear()
+        {
+			if (root == null)
+				return;
+
+			RemoveChildNodes(root);
+			root = null;
+			Count = 0;
+		}
+
+		public void SaveToFile(string filename)
 		{
 			BinaryFormatter formatter = new BinaryFormatter();
 			using (FileStream stream = File.Create(filename))
