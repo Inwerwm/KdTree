@@ -592,12 +592,16 @@ namespace KdTree
 		}
 
 		public void Clear()
-		{
-			if (root != null)
-				RemoveChildNodes(root);
-		}
+        {
+            if (root == null)
+                return;
+            
+			RemoveChildNodes(root);
+			root = null;
+			Count = 0;
+        }
 
-		public void SaveToFile(string filename)
+        public void SaveToFile(string filename)
 		{
 			BinaryFormatter formatter = new BinaryFormatter();
 			using (FileStream stream = File.Create(filename))
